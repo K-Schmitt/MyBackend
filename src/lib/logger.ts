@@ -1,9 +1,7 @@
-import { createRequire } from "node:module";
 import pino from "pino";
 
-const require = createRequire(import.meta.url);
-const pkg = require("../../package.json") as { version: string };
-export const APP_VERSION: string = pkg.version;
+declare const __APP_VERSION__: string;
+export const APP_VERSION: string = __APP_VERSION__;
 
 // process.env read directly — cannot import env.ts here without creating a circular dependency
 // (env.ts imports logger.ts for fatal-level boot errors)
