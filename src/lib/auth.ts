@@ -6,6 +6,7 @@ import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 
 export const auth = betterAuth({
+  baseURL: env.BETTER_AUTH_URL || (env.NODE_ENV === "production" ? "https://api.slackliniste.com" : undefined),
   database: drizzleAdapter(db, { provider: "sqlite" }),
   secret: env.SESSION_SECRET,
   emailAndPassword: {
