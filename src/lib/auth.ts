@@ -11,6 +11,33 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
+  trustedOrigins: env.ALLOWED_ORIGINS.split(",").map((o) => o.trim()),
+  socialProviders: {
+    ...(env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET
+      ? {
+          google: {
+            clientId: env.GOOGLE_CLIENT_ID,
+            clientSecret: env.GOOGLE_CLIENT_SECRET,
+          },
+        }
+      : {}),
+    ...(env.GITHUB_CLIENT_ID && env.GITHUB_CLIENT_SECRET
+      ? {
+          github: {
+            clientId: env.GITHUB_CLIENT_ID,
+            clientSecret: env.GITHUB_CLIENT_SECRET,
+          },
+        }
+      : {}),
+    ...(env.DISCORD_CLIENT_ID && env.DISCORD_CLIENT_SECRET
+      ? {
+          discord: {
+            clientId: env.DISCORD_CLIENT_ID,
+            clientSecret: env.DISCORD_CLIENT_SECRET,
+          },
+        }
+      : {}),
+  },
   databaseHooks: {
     user: {
       create: {
@@ -34,6 +61,9 @@ export const auth = betterAuth({
   },
   advanced: {
     cookiePrefix: "p3",
+    crossSubDomainCookies: {
+      enabled: env.NODE_ENV === "production",
+    },
     defaultCookieAttributes: {
       httpOnly: true,
       sameSite: "lax",
