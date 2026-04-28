@@ -14,7 +14,7 @@
     "test:watch": "vitest",
     "test:cov": "vitest run --coverage",
     "migrate": "tsx src/scripts/migrate.ts",
-    "set-admin": "node src/scripts/set-admin.js",
+    "set-admin": "node dist/scripts/set-admin.js",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio"

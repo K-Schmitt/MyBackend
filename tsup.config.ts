@@ -4,7 +4,7 @@ import { defineConfig } from "tsup";
 const { version } = JSON.parse(readFileSync("./package.json", "utf-8")) as { version: string };
 
 export default defineConfig({
-  entry: ["src/index.ts", "src/scripts/migrate.ts"],
+  entry: ["src/index.ts", "src/scripts/migrate.ts", "src/scripts/set-admin.ts"],
   format: ["esm"],
   dts: true,
   clean: true,
